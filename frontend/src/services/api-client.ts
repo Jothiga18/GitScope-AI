@@ -1,7 +1,9 @@
 export class ApiError extends Error {
   constructor(public code: string, message: string, public status: number) { super(message); }
 }
-const BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api/v1';
+const BASE =
+  import.meta.env.VITE_API_URL ||
+  'http://localhost:4000/api/v1';
 /** Calls the GitScope backend and unwraps the { success, data | error } envelope. */
 export async function api<T>(path: string, init?: RequestInit): Promise<T> {
   let res: Response;
